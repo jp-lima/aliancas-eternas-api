@@ -1,8 +1,8 @@
 from pydantic import BaseModel
 
-class User(BaseModel):
-    name:str
-    senha:str
+class UserRequestLogin(BaseModel):
+    email:str
+    password:str
     
 
 

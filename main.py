@@ -2,6 +2,8 @@ from fastapi import FastAPI
 from db import get_conn
 from pydantic import BaseModel 
 from repositories.user_repo import get_all_users,get_user_by_email
+from service.user_service import verify_password 
+from models.user import UserRequestLogin  
 
 def root():
     conn = get_conn()
@@ -23,9 +25,13 @@ def get_users():
     all_users = get_all_users()
     return all_users
 
-@app.get("/login")
-def search_user():
-    return "teste"
+@app.post("/login")
+def search_user(user:UserRequestLogin):
+    teste = verify_password(user.email,user.password) 
+
+
+    return teste
+
 
 
 
