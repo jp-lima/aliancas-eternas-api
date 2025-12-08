@@ -24,5 +24,30 @@ def get_user_by_email(email: str):
     conn.close()
     return users
 
+def post_new_user(uuid:str, name:str, email:str, password_hash:str, created_at:str,phone:str):
+
+    conn = get_conn()
+    cursor = conn.cursor(dictionary=True)
+
+    cursor.execute(
+    '''
+    INSERT INTO users 
+        (id, name, email, password_hash, created_at, role, status, phone)
+    VALUES 
+        (%s, %s, %s, %s, %s, %s, %s, %s)
+    ''',
+    (uuid, name, email, password_hash, created_at, "user", "offline", phone)
+    )
+
+    conn.commit()
+
+    cursor.close()
+    conn.close()
+
+
+
+
+
+
 
 
