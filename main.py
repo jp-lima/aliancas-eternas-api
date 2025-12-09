@@ -13,7 +13,7 @@ def get_users():
     all_users = get_all_users()
     return all_users
 
-@app.post("/login")
+@app.post("/auth")
 def search_user(user:UserRequestLogin):
     response_login = verify_password(user.email,user.password) 
 
